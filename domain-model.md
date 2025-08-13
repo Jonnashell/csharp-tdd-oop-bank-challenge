@@ -8,6 +8,7 @@
 |Account.cs			|SendBankStatement()
 |Account.cs			|Guid Id	| Unique identifier for object instance | Guid
 |Account.cs			|Guid AccountNumber	| Unique identifier for an account | Guid
+|Account.cs			|List\<Payment\> Payments	| List of payments to keep track of transaction history | List\<Payment\>
 |Account.cs			|Branch BranchName | Associate an account to a branch using enums | Branch
 |Account.cs			|decimal Balance
 |Payment.cs			|Guid Id | Unique identifier for payment | Guid
