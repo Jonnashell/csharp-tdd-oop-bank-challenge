@@ -9,14 +9,25 @@ namespace Boolean.CSharp.Main.Accounts
 {
     public class CurrentAccount : Account
     {
-        public CurrentAccount()
+        private int _overdraftAmount = 0;
+        private decimal _overdraftBalance = 0;
+        public CurrentAccount(Branch branchName = Branch.Oslo) : base(branchName)
         {
 
         }
 
-        public void RequestOverdraft(int overdraftAmount)
+        public bool ApproveOrRejectOverdraft(bool approve)
         {
             throw new NotImplementedException();
         }
+
+        public bool RequestOverdraft(int overdraftAmount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool OverdraftApproved { get; set; } = false;
+        public int OverdraftAmount { get { return _overdraftAmount; } }
+        public decimal OverdraftBalance { get { return _overdraftBalance; } }
     }
 }

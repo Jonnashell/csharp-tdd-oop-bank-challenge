@@ -8,11 +8,12 @@ namespace Boolean.CSharp.Main.Abstract
 {
     public abstract class Account
     {
-        public Guid Id { get; set; }
-        public Guid AccountNumber { get; set; } = Guid.NewGuid();
-        public Branch BranchName { get; set; }
-        public decimal Balance { get; set; }
-        public List<Payment> Payments = new List<Payment>();
+        private decimal _balance { get; set; }
+
+        public Account(Branch branchName)
+        {
+            this.BranchName = branchName;
+        }
 
         public string PrintBankStatement()
         {
@@ -34,14 +35,14 @@ namespace Boolean.CSharp.Main.Abstract
             throw new NotImplementedException();
         }
 
-        public bool ApproveOrRejectOverdraft(bool approve)
-        {
-            throw new NotImplementedException();
-        }
-
         public string SendBankStatement()
         {
             throw new NotImplementedException();
         }
+
+        public Guid Id { get; set; }
+        public Guid AccountNumber { get; set; } = Guid.NewGuid();
+        public Branch BranchName { get; set; }
+        public List<Payment> Payments = new List<Payment>();
     }
 }

@@ -49,5 +49,61 @@ namespace Boolean.CSharp.Test
             Payment payment = new Payment(_account.AccountNumber, 100m);
             _account.Withdraw(payment);
         }
+
+        [Test]
+        public void CalculateBalanceTest()
+        {
+            // Arrange
+            Payment payment = new Payment(_account.AccountNumber, 100m);
+            _account.Deposit(payment);
+
+            Payment withdraw_payment = new Payment(_account.AccountNumber, 50m);
+            _account.Withdraw(withdraw_payment);
+
+            // Act
+            decimal balance = _account.CalculateBalance();
+
+            // Assert
+            Assert.That(balance, Is.EqualTo(50m));
+        }
+
+        [Test]
+        public void BranchTest()
+        {
+            Assert.That(_account.BranchName, Is.EqualTo(Branch.Oslo));
+        }
+
+        [Test]
+        public void RequestOverdraftTest()
+        {
+            // Arrange
+            int overdraftAmount = 100;
+            if (_account.RequestOverdraft(overdraftAmount))
+            {
+                Assert.That(_account.OverdraftBalance, Is.EqualTo(overdraftAmount));
+            }
+        }
+
+        [Test]
+        public void ApproveOrRejectOverdraftTest()
+        {
+            bool approveOverdraft = true;
+            bool approved = _account.ApproveOrRejectOverdraft(approve: approveOverdraft);
+            Assert.That(_account.OverdraftApproved, Is.EqualTo(approveOverdraft));
+
+            bool approveOverdraft2 = false;
+            bool approved2 = _account.ApproveOrRejectOverdraft(approve: approveOverdraft2);
+            Assert.That(_account.OverdraftApproved, Is.EqualTo(approveOverdraft2));
+        }
+
+        [Test]
+        public void UseOverdraftTest()
+        {
+            _account.RequestOverdraft(100);
+            Payment payment = new Payment(_account.AccountNumber, 50m);
+            _account.Withdraw(payment);
+
+            Assert.That(_account.OverdraftBalance, Is.EqualTo(50m));
+        }
     }
 }
