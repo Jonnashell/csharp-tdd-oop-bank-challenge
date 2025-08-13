@@ -13,17 +13,35 @@ namespace Boolean.CSharp.Main.Accounts
         private decimal _overdraftBalance = 0;
         public CurrentAccount(Branch branchName = Branch.Oslo) : base(branchName)
         {
-
+            
         }
 
         public bool ApproveOrRejectOverdraft(bool approve)
         {
-            throw new NotImplementedException();
+            if (OverdraftApproved)
+            {
+                OverdraftApproved = false;
+                return false;
+            }
+            else
+            {
+                OverdraftApproved = true;
+                return true;
+            }
         }
 
         public bool RequestOverdraft(int overdraftAmount)
         {
-            throw new NotImplementedException();
+            if (OverdraftApproved)
+            {
+                return false;
+            }
+
+            ApproveOrRejectOverdraft(!OverdraftApproved);
+
+            _overdraftAmount = overdraftAmount;
+            _balance += overdraftAmount; // update hidden balance
+            return true;
         }
 
         public bool OverdraftApproved { get; set; } = false;

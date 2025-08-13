@@ -12,4 +12,10 @@ namespace Boolean.CSharp.Main
         Bergen,
         Stavanger
     }
+
+    public enum PaymentType
+    {
+        Credit,
+        Debit
+    }
 }
