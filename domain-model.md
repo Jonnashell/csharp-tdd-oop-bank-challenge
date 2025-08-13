@@ -13,7 +13,12 @@
 |Payment.cs			|Guid Account | Unique identifier for account for the payment | Guid
 |Payment.cs			|DateTime Date | Date and time of the payment | DateTime
 |Payment.cs			|decimal Amount | Amount we want to withdraw/deposit | decimal
+|Payment.cs         |PaymentType Type | Defines whether a payment is a credit or debit transcation |
+|Payment.cs         |bool Credit | bool value to see if the payment is credit or debit transaction |
+|Payment.cs         |bool Debit | bool value to see if the payment is credit or debit transaction |
 |SavingAccount.cs   | |Inherits the Account class
 |CurrentAccount.cs  | | Inherits the Account class
 |CurrentAccount.cs	|RequestOverdraft(int overdraftAmount) | Request overdraft on account | bool
 |CurrentAccount.cs	|ApproveOrRejectOverdraft(bool approve)	|Let bank managers approve or reject an overdraft request | bool
+|CurrentAccount.cs  |bool OverdraftApproved | See if overdraft is approved |
+|CurrentAccount.cs  |int OverdraftAmount | See how much overdraft was approved |
